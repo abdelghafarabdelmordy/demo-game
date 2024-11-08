@@ -1,0 +1,6 @@
+#delete LoadBalancer
+kubectl delete -f deployment-service.yml
+
+#destroy EKS cluster and delete nodes
+cd Eks-terraform/
+terraform destroy --auto-approve
