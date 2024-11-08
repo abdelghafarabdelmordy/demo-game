@@ -26,10 +26,10 @@ jobs:
 
       - name: Docker build and push
         run: |
-         docker build -t tic-tac-toe .
-         docker tag tic-tac-toe abdo3001/tic-tac-toe:latest
+         docker build -t demo-game .
+         docker tag demo-game abdo3001/demo-game:latest
          echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
-         docker push abdo3001/tic-tac-toe:latest
+         docker push abdo3001/demo-game:latest
         env:
          DOCKER_CLI_ACI: 1
   deploy:
@@ -38,13 +38,13 @@ jobs:
 
    steps:
     - name: Pull the Docker image
-      run: docker pull abdo3001/tic-tac-toe:latest
+      run: docker pull abdo3001/demo-game:latest
 
     - name: Trivy image scan
-      run: trivy image abdo3001/tic-tac-toe:latest # Runs Trivy to scan for vulnerabilities
+      run: trivy image abdo3001/demo-game:latest # Runs Trivy to scan for vulnerabilities
 
     - name: Run the container
-      run: docker run -d --name ticgame -p 3000:3000 abdo3001/tic-tac-toe:latest
+      run: docker run -d --name ticgame -p 3000:3000 abdo3001/demo-game:latest
 
     - name: Update kubeconfig
       run: aws eks --region us-east-1 update-kubeconfig --name EKS_CLOUD

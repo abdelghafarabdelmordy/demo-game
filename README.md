@@ -1,3 +1,3 @@
-<h1 align="center">TIC-TAC-TOE-GAME</h1>
+<h1 align="center">DEMO-GAME-V1</h1>
 
 
